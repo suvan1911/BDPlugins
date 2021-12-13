@@ -1,9 +1,12 @@
 /**
  * @name HideMessage
- * @author Len#7817
- * @authorId 295103995192672256
  * @description Lets you locally delete messages!
+ * @author Len#7817
+ * @authorLink https://discord.com/users/295103995192672256
+ * @authorId 295103995192672256
  * @version 1.0.0
+ * @updateUrl https://raw.githubusercontent.com/suvan1911/BDPlugins/main/HideMessage/HideMessage.plugin.js
+ * @source https://github.com/suvan1911/BDPlugins
  */
 
  module.exports = class HideMessage {
