@@ -10,7 +10,9 @@
  */
 
  module.exports = class HideMessage {
-    constructor() {}
+    constructor() {
+        this.hiddenIds = []
+    }
     start() {
        const MenuItem = BdApi.findModuleByProps("MenuItem");
        const MessageContextMenu = BdApi.findModule((m) => m?.default?.displayName === "MessageContextMenu")
@@ -19,16 +21,13 @@
        BdApi.Patcher.after("MessageContextMenuPatch", MessageContextMenu, "default", (that, args, value) => {
            const [props] = args;    
            let message = props.message
-           if (message.hidden === true) {
-
-           }
            value.props.children.push(BdApi.React.createElement(MenuItem.MenuItem, {
-               label: (message.hidden? "Unhide Message": "Hide Message"),
+               label: (this.hiddenIds.includes(message.id)? "Unhide Message": "Hide Message"),
                id: "custom",
                color: "colorDanger",
                action: () => {
-                    message.blocked = true
-                    message.hidden = true
+                    message.blocked = !message.blocked
+                    this.hiddenIds.includes(message.id)? this.hiddenIds.splice(this.hiddenIds.indexOf(message.id),1): this.hiddenIds.push(message.id)
                     Dispatcher.dirtyDispatch({type: "MESSAGE_UPDATE", message: message})
                }
            }))
