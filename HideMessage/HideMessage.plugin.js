@@ -1,6 +1,6 @@
 /**
  * @name HideMessage
- * @description Lets you locally delete messages!
+ * @description Lets you locally hide messages!
  * @author Len
  * @authorLink https://discord.com/users/295103995192672256
  * @authorId 295103995192672256
